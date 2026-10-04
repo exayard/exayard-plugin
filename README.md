@@ -12,11 +12,20 @@ bid, compare two revisions of a plan set, or see which of your suppliers has the
   hosts that read Agent Plugins, `.mcp.json` for Claude).
 - Two manifests: `plugin.json` (Agent Plugins 1.0, with ChatGPT's listing details under
   `extensions["com.openai"]`) and `.claude-plugin/plugin.json` (Claude).
+- `.claude-plugin/marketplace.json`: makes this repository a plugin marketplace, so Claude Code, Cowork and Codex
+  can install the plugin from it.
 - `assets/`: the Exayard logo and icon.
 
 The plugin holds no code. It runs nothing on your computer and sends nothing anywhere except through the one
 Exayard connection above, which you sign in to with your Exayard account. What Exayard does with your data is
 described in the [privacy policy](https://exayard.com/privacy).
+
+## Install from this repository
+
+- Claude Code: `claude plugin marketplace add exayard/exayard-plugin && claude plugin install exayard@exayard`
+- Codex: `codex plugin marketplace add exayard/exayard-plugin && codex plugin add exayard@exayard`
+
+In Claude Cowork, add `exayard/exayard-plugin` as a marketplace, then install Exayard from it.
 
 ## Getting started
 
