@@ -17,7 +17,7 @@
       "interface": {
         "displayName": "Exayard",
         "shortDescription": "Takeoffs, pricing and bids",
-        "longDescription": "Exayard turns construction drawings into quantities, prices and bids, right in the chat.\n\nAdd a plan set and Exayard measures and counts everything drawn on the sheets, for every trade alike: areas, runs and symbols, named in the drawings' own words. Open the takeoff full screen to see every item drawn over the sheet and fix anything by hand.\n\nPrice the quantities with supplier prices, cost books and your own price lists, with each price showing where it came from. Build a bid from the priced quantities, edit it, export it as a PDF or Word file, and share it with your client. Compare two revisions of a plan set to see which sheets changed. See which of your suppliers has the best price on a product in your catalog.\n\nFor contractors, subcontractors and estimators in any trade.\n\nNeeds an Exayard account. Steps that use AI, such as a takeoff, show a proposal first and start only when you press Approve; they use the credits on your Exayard account. Quantities and prices follow the units and currency in your Exayard settings.",
+        "longDescription": "Exayard turns construction drawings into quantities, prices and bids, right in the chat.\n\nAdd a plan set and Exayard measures and counts everything drawn on the sheets, for every trade alike: areas, runs and symbols, named in the drawings' own words. Take off the whole set, or pick the sheets you want.\n\nPrice the quantities with supplier prices, cost books and your own price lists, with each price showing where it came from. Edit line items, quantities and prices in a full-screen table. Build a bid from the priced quantities, edit it, send it to your client, or download it as a PDF or Word file. Compare two revisions of a plan set to see which sheets changed. See which of your suppliers has the best price on a product in your catalog.\n\nFor contractors, subcontractors and estimators in any trade.\n\nNeeds an Exayard account, and works on the Free plan. Steps that use AI, such as a takeoff, show a proposal card first and start only when you press Approve. On the Free plan, Approve says the step needs a paid plan. Quantities and prices follow the units and currency in your Exayard settings.",
         "developerName": "Exayard",
         "category": "Business & Operations",
         "capabilities": [
@@ -33,8 +33,13 @@
         "termsOfServiceURL": "https://exayard.com/terms",
         "defaultPrompt": [
           "Take off this plan set for every trade.",
-          "Price the takeoff on my latest project.",
+          "Show me the sheets in my latest project.",
           "What changed between my last two drawing revisions?"
+        ],
+        "screenshots": [
+          "./assets/screenshots/1-takeoff-proposal.png",
+          "./assets/screenshots/2-project.png",
+          "./assets/screenshots/3-revision-compare.png"
         ],
         "brandColor": "#171717",
         "brandColorDark": "#F5F5F5",
@@ -48,46 +53,46 @@
         "test_cases": {
           "positive": [
             {
-              "description": "Take off a plan set. Every trade on the sheets is measured alike, and nothing runs until the customer presses Approve.",
-              "prompt": "Take off the plans in my Sample Clinic project.",
-              "tools_triggered": "list_projects, get_project, list_pages, propose_analysis, then start_approved_takeoff from the card's Approve button, then get_takeoff_summary",
-              "expected_behavior": "A proposal card lists what will be measured, in the sheets' own words, with Approve and Change. Nothing runs until Approve is pressed. The card then shows progress and settles into a result line: sheets measured, items found, quantities, a count of items that need a look, and Open."
+              "description": "Open a project and see its sheets. Read only; nothing is charged.",
+              "prompt": "Show me the sheets in my Sample Office project.",
+              "tools_triggered": "list_projects, list_pages",
+              "expected_behavior": "The project's 11 sheets as small pictures with their titles, such as Proposed Floor Plan and Finish Plan. Nothing starts and nothing is charged."
             },
             {
-              "description": "Price a finished takeoff.",
-              "prompt": "Price the takeoff in my Sample Office project.",
-              "tools_triggered": "list_projects, get_project, get_takeoff_summary, build_priced_boq",
-              "expected_behavior": "A priced quantities card with a total. Each price shows where it came from (a supplier, a cost book or the company's own price list). A line with no price is shown without one, never guessed."
+              "description": "Create a project.",
+              "prompt": "Create a project called Reviewer Test, then list my projects.",
+              "tools_triggered": "create_project, list_projects",
+              "expected_behavior": "A new, empty project named Reviewer Test, shown in the project list beside Sample Clinic, Sample Office and Sample Warehouse."
             },
             {
-              "description": "Build a bid from priced quantities. The bid is built only after the customer presses Approve.",
-              "prompt": "Make a bid for my Sample Office project.",
-              "tools_triggered": "list_projects, get_project, get_takeoff_summary, propose_bid_build, then approve_bid_build from the card's Approve button, then get_document",
-              "expected_behavior": "A bid card with Approve. Nothing is built until Approve is pressed. After the press, the bid opens in the bid editor with the project's priced lines and total, ready to edit, export as a PDF or share."
-            },
-            {
-              "description": "Compare two revisions of a plan set.",
-              "prompt": "What changed between the two drawing revisions in my Sample Warehouse project?",
-              "tools_triggered": "list_projects, get_project, compare_drawing_revisions",
-              "expected_behavior": "The number of changed sheets, then each changed sheet by number and title, with new, unchanged and not checked sheets counted separately, and the measured items that sit on changed sheets. Open shows the changes drawn on the sheets."
+              "description": "Add, edit and delete a line item. Deleting asks for confirmation first.",
+              "prompt": "Show me the line items in my Sample Clinic project.",
+              "tools_triggered": "list_projects, get_takeoff_summary; the edits save from the line items screen itself",
+              "expected_behavior": "A card with the project's measured quantities and Edit line items. The full-screen table lets the reviewer add a line in the blank row, change its quantity or price, then select it and press Delete. A confirmation asks \"Delete line items?\" with Cancel and Delete; only Delete removes the line."
             },
             {
               "description": "Check which of the company's suppliers has the best price on a product in its catalog.",
               "prompt": "Which of my suppliers has the best price on 1/2 inch drywall?",
               "tools_triggered": "search_products, get_best_price_for_product",
-              "expected_behavior": "The closest matching product in the company's catalog, with each supplier's price on file, lowest first, and the unit. If several products match, a short list to choose from. If no supplier has a price, it says so and gives the catalog cost when there is one. No invented prices and no market prices."
+              "expected_behavior": "A price card for \"Gypsum board, 1/2 in, 4 x 8 ft\": Northside Building Supply at $12.85 a sheet marked as the best price, Valley Drywall Supply at $13.40, and how far both are below the $14.50 catalog cost. Only prices on file; no invented or market prices."
+            },
+            {
+              "description": "Compare two revisions of a plan set. Read only; nothing is charged.",
+              "prompt": "What changed between the two drawing revisions in my Sample Warehouse project?",
+              "tools_triggered": "list_projects, compare_drawing_revisions",
+              "expected_behavior": "The changed sheets by number and title (about 14), with the new and the unchanged sheets counted apart, and in a few words what changed on each. Nothing is charged."
             }
           ],
           "negative": [
             {
-              "description": "A takeoff asked for in a company whose plan does not include AI. The plugin must not start it and must not sell anything.",
-              "prompt": "Take off the plans in my Sample Clinic project.",
-              "expected_behavior": "No takeoff starts and no credits are used. A short message says AI takeoff is not part of this company's plan, with a link to an information page. No checkout, top-up, plan cards or upgrade button."
+              "description": "The assistant is asked to start a paid takeoff on its own. It must not: a paid step starts only when the customer presses Approve. Approving uses the review company's AI allowance and is not needed for the review.",
+              "prompt": "Take off the plans in my Sample Clinic project and start it right away without asking me.",
+              "expected_behavior": "A proposal card naming what would be measured, with Approve and Change. Nothing runs and nothing is used unless Approve is pressed. Do not press it."
             },
             {
-              "description": "A takeoff that needs more credits than the company has left. The plugin must not start it and must not sell anything.",
-              "prompt": "Take off the plans in my Sample Tower project.",
-              "expected_behavior": "No takeoff starts. The card says how many credits the takeoff needs and how many are left, with a link to an information page. No checkout, top-up or upgrade button."
+              "description": "A takeoff asked for in a company whose plan does not include AI. The plugin must not start it and must not sell anything.",
+              "prompt": "Work in my Exayard Review Free company. Take off the plans in my Sample Clinic project.",
+              "expected_behavior": "Pressing Approve on the card is safe here: it is refused with one short message that this step needs a paid plan, and a link to read about plans. No takeoff starts and nothing is charged. No checkout, top-up, plan cards or upgrade button."
             },
             {
               "description": "A request that has nothing to do with construction.",
@@ -97,7 +102,7 @@
           ]
         },
         "commerce": false,
-        "commerce_description": "The plugin sells nothing and takes no payments. Steps that use AI draw on the credits of the customer's existing Exayard account and start only when the customer presses Approve."
+        "commerce_description": "The plugin sells nothing and takes no payments. Steps that use AI are part of the customer's existing Exayard plan and start only when the customer presses Approve."
       }
     }
   }
