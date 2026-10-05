@@ -23,6 +23,6 @@ description: Turn a priced Exayard takeoff into a bid the customer can edit, exp
 ## Rules
 
 - A bid only states quantities and prices the tools returned.
-- If a step is refused because of the account's plan or credits, pass on the message and its link as given, and
-  say nothing more about plans or prices.
+- If a step is refused because of the account's plan or its AI usage, pass on the message and its link as given,
+  and say nothing more about plans or prices.
 - Plain words to the customer: no record ids and no tool names.
