@@ -101,6 +101,7 @@
             }
           ]
         },
+        "demo_recording_url": "https://exayardcdn.com/plugin/exayard-chatgpt-demo.mp4",
         "commerce": false,
         "commerce_description": "The plugin sells nothing and takes no payments. Steps that use AI are part of the customer's existing Exayard plan and start only when the customer presses Approve."
       }
