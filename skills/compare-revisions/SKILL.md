@@ -15,7 +15,7 @@ description: Compare two revisions of a plan set in Exayard and show which sheet
    unchanged, changed or not checked, with the measured items on the changed sheets.
 4. **Report.** Lead with the count of changed sheets, then list them by sheet number and title. Name the measured
    items that sit on changed sheets, since their quantities may need a new takeoff. To see the changes drawn on
-   the sheets, the customer presses **Open**, or you call `open_exayard`.
+   the sheets, the customer presses **Open**, or you call `home`.
 5. **Next step.** If quantities may have changed, offer a new takeoff of the changed sheets. That goes through
    the proposal card and the customer's **Approve**, as every takeoff does.
 

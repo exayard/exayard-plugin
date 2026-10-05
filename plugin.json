@@ -62,7 +62,7 @@
               "description": "Create a project.",
               "prompt": "Create a project called Reviewer Test, then list my projects.",
               "tools_triggered": "create_project, list_projects",
-              "expected_behavior": "A new, empty project named Reviewer Test, shown in the project list beside Sample Clinic, Sample Office and Sample Warehouse."
+              "expected_behavior": "A new, empty project named Reviewer Test, shown in the project list beside Riverside Health Center (sample), Sample Clinic, Sample Office and Sample Warehouse."
             },
             {
               "description": "Add, edit and delete a line item. Deleting asks for confirmation first.",
