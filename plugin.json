@@ -33,12 +33,12 @@
         "termsOfServiceURL": "https://exayard.com/terms",
         "defaultPrompt": [
           "Take off this plan set for every trade.",
-          "Show me the sheets in my latest project.",
+          "Open the power plan in my latest project.",
           "What changed between my last two drawing revisions?"
         ],
         "screenshots": [
           "./assets/screenshots/1-takeoff-proposal.png",
-          "./assets/screenshots/2-project.png",
+          "./assets/screenshots/2-sheet-editor.png",
           "./assets/screenshots/3-revision-compare.png"
         ],
         "brandColor": "#171717",
