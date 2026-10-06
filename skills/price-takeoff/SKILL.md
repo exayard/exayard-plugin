@@ -17,8 +17,6 @@ description: Price the quantities of an Exayard takeoff with supplier prices, co
 4. **Gaps.** If a line has no price, say so and leave it blank. Never invent a price.
 5. **Changes.** Lines, quantities, prices and markups are changed in the line items table: the customer presses
    **Open** on the card, or you call `home`.
-6. **Supplier quotes.** To compare two or more quotes the customer has, call `level_quotes` and report its totals
-   as given.
 
 ## Rules
 
